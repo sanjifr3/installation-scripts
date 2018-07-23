@@ -1,0 +1,4 @@
+$ th
+$ print(_VERSION)
+    # Lua 5.1 (pc)
+
