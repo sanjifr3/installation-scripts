@@ -5,19 +5,22 @@ DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
 
 if [ $OS_V == "aarch" ]; then
+  RS_SCRIPTS_PATH=$HOME/installation-scripts/install/realsense
+  
+  cd $RS_SCRIPTS_PATH
   
   # Install drivers
-  cd realsense
   ./buildPatchedKernel.sh --nocleanup
   ./installLibrealsense.sh
   #cd /usr/local/bin
   #./realsense-viewer
   
   # Install ROS RealSense Package
-  ./installRealSenseROS casper-vision
+  #./installRealSenseROS casper-vision
   
   exit 0
   
+fi
 #elif [ $OS_V != "16.04" ]; then
   # Add intel server to list of repos
 #  echo 'deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main' | sudo tee /etc/apt/sources.list.d/realsense-public.list

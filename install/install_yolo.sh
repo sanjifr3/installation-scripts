@@ -12,7 +12,7 @@ cd $DIR
 #rm -rf darknet
 
 # Clone repo
-#git clone https://github.com/pjreddie/darknet.git
+git clone https://github.com/pjreddie/darknet.git pj_darknet
 git clone https://github.com/sanjifr3/darknet.git
 
 cd darknet

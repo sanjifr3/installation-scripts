@@ -18,13 +18,13 @@ PY2_LIBS=0
 PY3_LIBS=0
 CUDA=0
 CUDNN=0
-OPENCV=1
-DLIB=1
-TORCH=1
-OPENFACE=1
-YOLO=1
-PYTORCH=1
-TF=1
+OPENCV=0
+DLIB=0
+TORCH=0
+OPENFACE=0
+PYTORCH=0
+YOLO=0
+TF=0
 ASTRA=0
 REALSENSE=1
 AWS=0
@@ -124,10 +124,14 @@ if [ $REALSENSE -eq 1 ]; then ./install/install_realsense.sh; fi
 if [ $AWS -eq 1 ]; then ./install/install_aws.sh; fi
 
 # Deactivate swap
-if [ $OS_VERSION == "aarch" ];
-  swapoff
+if [ $OS_VERSION == "aarch" ]; then
+  sudo swapoff --all
   sudo mv /etc/fstab /etc/fstab.back
   sudo cp `dirname "$0"`/tensorflow/fstab /etc/ 
   #sudo gedit /etc/fstab # Delete contents of entire file
-  #rm -rf /media/nvidia/$EXT_NAME/swap
+  rm -rf /media/nvidia/$EXT_NAME/swapfile
+  
+  sudo apt clean
+  sudo apt autoremove --purge
+  sudo rm /usr/src/*.tbz2
 fi	

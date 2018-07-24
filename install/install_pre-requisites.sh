@@ -1,10 +1,10 @@
 #!/bin/bash
-VERSION=${OS_VERSION:-16.04}
+OS_V=${OS_VERSION:-16.04}
 
-echo "Installing pre-requisites for Ubuntu $VERSION ..."
+echo "Installing pre-requisites for Ubuntu $OS_V ..."
 
 # Get sublime text
-if [ $VERSION != "aarch" ]; then 
+if [ $OS_V != "aarch" ]; then 
   wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
   echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 fi
@@ -89,11 +89,11 @@ for PKG in \
   thunar \
 ; do sudo apt-get install -y --no-install-recommends $PKG ; done
 
-if [ $VERSION == "16.04" ]; then 
+if [ $OS_V == "16.04" ]; then 
   sudo apt-get install -y --upgrade python3.5-dev sublime-text nautilus-actions
-elif [ $VERSION == "14.04" ]; then 
+elif [ $OS_V == "14.04" ]; then 
   sudo apt-get install -y --upgrade python3.4-dev nautilus-open-terminal sublime-text
-elif [ $VERSION == "aarch" ]; then
+elif [ $OS_V == "aarch" ]; then
   sudo apt-get install -y --upgrade python3.5-dev
 fi
 

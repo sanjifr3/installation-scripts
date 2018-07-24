@@ -13,7 +13,7 @@ if echo $TF | grep -q "rc"; then TF_=${TF%-*}${TF##*-}
 else TF_=$TF; fi
 
 #TF_SCRIPTS_PATH=$PWD/`dirname "$0"`/tensorflow
-TF_SCRIPTS_PATH=$HOME/casper-vision/scripts/install/tensorflow
+TF_SCRIPTS_PATH=$HOME/installation-scripts/install/tensorflow
 
 cd $DIR
 #rm -rf tensorflow
