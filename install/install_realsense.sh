@@ -10,7 +10,6 @@ if [ $OS_V == "aarch" ]; then
   cd $RS_SCRIPTS_PATH
   
   # Install drivers
-  ./buildPatchedKernel.sh --nocleanup
   ./installLibrealsense.sh
   #cd /usr/local/bin
   #./realsense-viewer
