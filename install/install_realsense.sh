@@ -4,22 +4,22 @@ WRAPPER_VERSION=${REALSENSE_ROS_VERSION:-2.0.3}
 DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
 
-if [ $OS_V == "aarch" ]; then
-  RS_SCRIPTS_PATH=$HOME/installation-scripts/install/realsense
-  
-  cd $RS_SCRIPTS_PATH
+#if [ $OS_V == "aarch" ]; then
+#  RS_SCRIPTS_PATH=$HOME/installation-scripts/install/realsense
+  #
+  #cd $RS_SCRIPTS_PATH
   
   # Install drivers
-  ./installLibrealsense.sh
+  #./installLibrealsense.sh
   #cd /usr/local/bin
   #./realsense-viewer
   
   # Install ROS RealSense Package
   #./installRealSenseROS casper-vision
   
-  exit 0
+  #exit 0
   
-fi
+#fi
 #elif [ $OS_V != "16.04" ]; then
   # Add intel server to list of repos
 #  echo 'deb http://realsense-hw-public.s3.amazonaws.com/Debian/apt-repo xenial main' | sudo tee /etc/apt/sources.list.d/realsense-public.list
@@ -68,7 +68,13 @@ sudo udevadm control --reload-rules && udevadm trigger
 sudo chmod +x scripts/*.sh
 
 # Download, patch, and build realsense-affected kernel modules (drivers)
-./scripts/patch-realsense-ubuntu-xenial-joule.sh
+if [ $OS_V == "aarch" ]; then
+  cd scripts
+  ./patch-arch.sh
+  cd ..
+else
+  ./scripts/patch-realsense-ubuntu-xenial-joule.sh  
+fi
 
 echo "hid_sensor_custom" | sudo tee -a /etc/modules
 gedit CMakeLists.txt

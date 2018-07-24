@@ -24,9 +24,9 @@ TORCH=0
 OPENFACE=0
 PYTORCH=0
 YOLO=0
-TF=0
+TF=1
 ASTRA=0
-REALSENSE=1
+REALSENSE=0
 AWS=0
 
 # Override defaults for following install scripts
@@ -112,7 +112,7 @@ if [ $PYTORCH -eq 1 ]; then ./install/install_pytorch.sh; fi
 if [ $YOLO -eq 1 ]; then ./install/install_yolo.sh; fi
 
 # Install TensorFlow
-if [ $TF -eq 1 ]; then ./install/install_tensorflow; fi
+if [ $TF -eq 1 ]; then ./install/install_tensorflow.sh; fi
 
 # Install Astra
 if [ $ASTRA -eq 1 ]; then ./install/install_astra.sh; fi
