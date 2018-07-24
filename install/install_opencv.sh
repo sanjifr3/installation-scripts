@@ -34,9 +34,9 @@ sudo apt-get install -y python-dev python-numpy python-py python-pytest -y
 sudo apt-get install -y libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev     
 
 cd $DIR
-
-mkdir -p opencv
-cd opencv
+rm -rf opencv$VERSION
+mkdir -p opencv$VERSION
+cd opencv$VERSION
 
 # Clone opencv repositories
 git clone https://github.com/opencv/opencv.git
@@ -44,7 +44,7 @@ git clone https://github.com/opencv/opencv_contrib.git
 #git clone https://github.com/opencv/opencv_extra.git
 
 # Remove build folder
-sudo rm -rf opencv/release/
+rm -rf opencv/release/
 
 # Update opencv repos
 cd opencv
@@ -101,7 +101,6 @@ elif [ $GPU -eq 1 ]; then
   cmake \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D BUILD_PNG=OFF \
     -D BUILD_TIFF=OFF \
     -D BUILD_TBB=OFF \
@@ -152,11 +151,11 @@ else
     -D INSTALL_C_EXAMPLES=ON \
     -D INSTALL_PYTHON_EXAMPLES=ON \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
-    -D OPENCV_TEST_DATA_PATH=../../opencv_extra/testdata \
-    -D BUILD_EXAMPLES=OFF \
+    -D BUILD_EXAMPLES=ON \
     -D WITH_CUDA=OFF \
     -D WITH_CUBLAS=OFF \
     ../
+#    -D OPENCV_TEST_DATA_PATH=../../opencv_extra/testdata \    
 fi
 
 #echo ADD cuda to following line: 'ocv_target_link_libraries(${tgt} ${OPENCV_LINKER_LIBS} ${OPENCV_CUDA_SAMPLES_REQUIRED_DEPS} cuda)'
