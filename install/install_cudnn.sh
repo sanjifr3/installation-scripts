@@ -9,13 +9,19 @@ echo "Installing CUDNN $CUDNN for CUDA $CUDA in $DIR..."
 ## install cudnn 7
 
 if [ $OS_V == "aarch" ]; then
-  FROM=/usr/lib/aarch64-linux-gnu
+  FROM=$DIR/cuda/jetson/cudnn
   TO=/usr/local/cuda/lib64
-  sudo ln -s /usr/include/cudnn.h /usr/local/cuda/include/cudnn.h
-  sudo ln -s $FROM/libcudnn.so $TO/libcudnn.so
-  sudo ln -s $FROM/libcudnn.so.7 $TO/libcudnn.so.7
-  sudo ln -s $FROM/libcudnn.so.7.0.5 $TO/libcudnn.so.7.0.5
-  sudo ln -s $FROM/libcudnn_static_v7.a $TO/libcudnn_static.a
+  sudo cp $FROM/cudnn_v7.h /usr/local/cuda/include/cudnn.h
+  sudo cp $FROM/libcudnn.so.7.0.5 $TO/libcudnn.so.7.0.5
+  sudo cp $FROM/libcudnn_static_v7.a $TO/libcudnn_static.a
+  cd $TO
+  sudo ln -s libcudnn.so.7.0.5 libcudnn.so.7
+  sudo ln -s libcudnn.so.7.0.5 libcudnn.so
+  #sudo ln -s /usr/include/cudnn.h /usr/local/cuda/include/cudnn.h
+  #sudo ln -s $FROM/libcudnn.so $TO/libcudnn.so
+  #sudo ln -s $FROM/libcudnn.so.7 $TO/libcudnn.so.7
+  #sudo ln -s $FROM/libcudnn.so.7.0.5 $TO/libcudnn.so.7.0.5
+  #sudo ln -s $FROM/libcudnn_static_v7.a $TO/libcudnn_static.a
 else
   cd $DIR/cuda
   tar xvzf cudnn-${CUDA}-linux-x64-v${CUDNN}.tgz
