@@ -17,90 +17,46 @@ ROS=0
 PY2_LIBS=0
 PY3_LIBS=0
 CUDA=0
-CUDNN=0
+CUDNN=1
 OPENCV=0
 DLIB=0
-TORCH=1
+TORCH=0
 OPENFACE=1
-YOLO=0
-PYTORCH=0
-TF=0
+YOLO=1
+PYTORCH=1
+TF=1
 ASTRA=1
 REALSENSE=1
 AWS=1
+ARDUINO=0
+DESPOT=0
 
-# Override defaults for following install scripts
-export OS_VERSION=16.04 # 16.04 # aarch # 14.04
-export ROS_VERSION=kinetic # indigo # kinetic
+export OS_VERSION=16.04
+export ROS_VERSION=kinetic
 export USE_GPU=0
-#export DLIB_VERSION=19.9
-#export OPENFACE_VERSION=0.2.1
-#export CUDA_VERSION=9.0
-#export CUDNN_VERSION=7.1
-#export OPENCV_VERSION=3.3.1
-#export PYTORCH_VERSION=0.3.1
-#export TF_VERSION=1.6.0-rc1
-#export BAZEL_VERSION=0.10.1
-#export REALSENSE_VERSION=2.10.2
-#export REALSENSE_ROS_VERSION:-2.0.3
-#export INSTALL_PY2=1
-#export INSTALL_PY3=1
-
-# Paths
-export PROGRAM_PATH=$HOME/programs
+export INSTALL_PY2=1
+export INSTALL_PY3=0
 
 ######################################################################################
 
-# Make target paths
-mkdir -p $PROGRAM_PATH/cuda
-mkdir -p $PROGRAM_PATH/nvidia-jetpack
+export INSTALL_PREREQ=$PREREQ
+export INSTALL_ROS=$ROS
+export INSTALL_PY2_LIBS=$PY2_LIBS
+export INSTALL_PY3_LIBS=$PY3_LIBS
+export INSTALL_CUDA=$CUDA
+export INSTALL_CUDNN=$CUDNN
+export INSTALL_OPENCV=$OPENCV
+export INSTALL_DLIB=$DLIB
+export INSTALL_TORCH=$TORCH
+export INSTALL_OPENFACE=$OPENFACE
+export INSTALL_PYTORCH=$PYTORCH
+export INSTALL_YOLO=$YOLO
+export INSTALL_TF=$TF
+export INSTALL_ASTRA=$ASTRA
+export INSTALL_REALSENSE=$REALSENSE
+export INSTALL_AWS=$AWS
+export INSTALL_ARDUINO=$ARDUINO
+export INSTALL_DESPOT=$DESPOT
 
-# Install pre-requisites
-if [ $PREREQ -eq 1 ]; then ./install/install_pre-requisites.sh; fi
+./setup.sh
 
-# Install ROS
-if [ $ROS -eq 1 ]; then ./install/install_ros.sh; fi
-
-# Install Python 2 libraries
-if [ $PY2_LIBS -eq 1 ]; then ./install/install_python2.sh; fi
-
-# Install Python 3 libraries
-if [ $PY3_LIBS -eq 1 ]; then ./install/install_python3.sh; fi
-
-# Install CUDA 9
-# -- installed via NVIDIA Jetpack
-# -- otherwise need to install cuda9 separately
-if [ $CUDA -eq 1 ]; then ./install/install_cuda.sh; fi
-
-# Install CUDNN
-if [ $CUDNN -eq 1 ]; then ./install/install_cudnn.sh; fi
-
-# Install OpenCV
-if [ $OPENCV -eq 1 ]; then ./install/install_opencv.sh; fi
-
-# Install DLIB
-if [ $DLIB -eq 1 ]; then ./install/install_dlib.sh; fi
-
-# Install Torch
-if [ $TORCH -eq 1 ]; then ./install/install_torch.sh; fi
-
-# Install OpenFace
-if [ $OPENFACE -eq 1 ]; then ./install/install_openface.sh; fi
-
-# Install PyTorch
-if [ $PYTORCH -eq 1 ]; then ./install/install_pytorch.sh; fi
-
-# Install YOLO
-if [ $YOLO -eq 1 ]; then ./install/install_yolo.sh; fi
-
-# Install TensorFlow
-if [ $TF -eq 1 ]; then ./install/install_tensorflow.sh; fi
-
-# Install Astra
-if [ $ASTRA -eq 1 ]; then ./install/install_astra.sh; fi
-
-# Install RealSense
-if [ $REALSENSE -eq 1 ]; then ./install/install_realsense.sh; fi
-
-# Install AWS/Polly
-if [ $AWS -eq 1 ]; then ./install/install_aws.sh; fi

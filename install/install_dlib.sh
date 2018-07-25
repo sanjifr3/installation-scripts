@@ -11,7 +11,7 @@ echo "Installing DLIB $VERSION in $DIR..."
 cd $DIR
 
 # Remove existing installation
-#sudo rm -rf dlib
+sudo rm -rf dlib
 
 # Clone repo
 git clone https://github.com/davisking/dlib.git

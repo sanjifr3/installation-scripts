@@ -9,7 +9,7 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | sudo python3 &&
 ## Upgrade pip3 
 sudo pip3 install --upgrade pip
 
-sudo pip2 install python-dateutil==2.7.0
+sudo pip3 install python-dateutil==2.7.0
 
 ## Install Python3 packages
 for PKG in \

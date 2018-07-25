@@ -81,9 +81,9 @@ for PKG in \
   python-pip \
   python-wstool \
   terminator \
-  libgflags-dev \
 ; do sudo apt-get install -y --upgrade $PKG ; done
-
+  # libgflags-dev \
+  # qt5-default \
 # Install ubuntu packages w/o installation recommends
 for PKG in \
   thunar \

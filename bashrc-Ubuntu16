@@ -5,6 +5,9 @@
 source /opt/ros/kinetic/setup.bash
 
 export ROS_WORKSPACE=$HOME/mia-robot/mia-vision
+#export ROS_WORKSPACE=$HOME/mia-robot/mia-main
+#export ROS_WORKSPACE=$HOME/casper-vision
+#export ROS_WORKSPACE=$HOME/blueberry
 
 source $ROS_WORKSPACE/devel/setup.bash
 export ROS_HOSTNAME=XPS16.local
@@ -12,6 +15,7 @@ export ROSLAUNCH_SSH_UNKNOWN=1
 export EDITOR=gedit
 
 export ROBOT=master
+#export ROS_NAMESPACE=sanjif
 
 # If not running interactively, don't do anything
 case $- in
@@ -145,11 +149,8 @@ alias rqtreconfig="rosrun rqt_reconfigure rqt_reconfigure"
 
 # CUDA ENV Variables
 export CUDA_VERSION=9.0
-#export PATH=$PATH:/usr/local/cuda-${CUDA_VERSION}/bin
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-${CUDA_VERSION}/lib64
-#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-${CUDA_VERSION}/extras/CUPTI/lib64
-#export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/usr/local/cuda-${CUDA_VERSION}/lib
-#export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:/usr/local/cuda-${CUDA_VERSION}/
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-9.0/bin:$PATH
 
 # Darknet
 export PYTHONPATH=$PYTHONPATH:$HOME/programs/darknet/python
@@ -158,16 +159,16 @@ export PYTHONPATH=$PYTHONPATH:$HOME/programs/darknet/python
 . $HOME/programs/torch/install/bin/torch-activate
 
 # Astra
-export OPENNI2_INCLUDE=$OPENNI2_INCLUDE:$HOME/programs/astra/OpenNI-Linux-x86-2.3/Include
-export OPENNI2_INCLUDE=$OPENNI2_INCLUDE:$HOME/programs/astra/OpenNI-Linux-x86-2.3/ExtendedAPI
+#export OPENNI2_INCLUDE=$OPENNI2_INCLUDE:$HOME/programs/astra/OpenNI-Linux-x86-2.3/Include
+#export OPENNI2_INCLUDE=$OPENNI2_INCLUDE:$HOME/programs/astra/OpenNI-Linux-x86-2.3/ExtendedAPI
+#export ASTRA_SDK_INCLUDE=$HOME/programs/astra/AstraSDK/install/include
+#export ASTRA_SDK_LIB=$HOME/programs/astra/AstraSDK/install/lib
+#export ASTRA_SDK_INCLUDE=$ASTRA_SDK_INCLUDE:$HOME/programs/astra/AstraSDK/include
+#export ASTRA_SDK_LIB=$ASTRA_SDK_LIB:$HOME/programs/astra/AstraSDK/lib
 
-export ASTRA_SDK_INCLUDE=$HOME/programs/astra/AstraSDK/install/include
-export ASTRA_SDK_LIB=$HOME/programs/astra/AstraSDK/install/lib
-export ASTRA_SDK_INCLUDE=$ASTRA_SDK_INCLUDE:$HOME/programs/astra/AstraSDK/include
-export ASTRA_SDK_LIB=$ASTRA_SDK_LIB:$HOME/programs/astra/AstraSDK/lib
-
-# Realsense
-export PYTHONPATH=$PYTHONPATH:/usr/local/lib
-export OpenCV_DIR=~/programs/opencv/opencv/release
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
-export PATH=/usr/local/cuda-9.0/bin:$PATH
+#export PYTHONPATH=$PYTHONPATH:/usr/local/lib
+#export OpenCV_DIR=~/programs/opencv/opencv/release
+#export PYTHONPATH=$PYTHONPATH:/usr/lib/python2.7/dist-packages:/usr/local/lib/python2.7/dist-packages:
+## To Use Python 3
+#unset PYTHONPATH
+#export PYTHONPATH=/usr/local/lib/python3.5/dist-packages
