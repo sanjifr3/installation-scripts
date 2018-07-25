@@ -99,25 +99,37 @@ sudo make uninstall
 make clean
 
 # Install librealsense
-cmake \
-  -D CMAKE_BUILD_TYPE=release \
-  ../ \
-  -DBUILD_EXAMPLES=true \
-  -DBUILD_CV_EXAMPLES=bool:true \
-  -DBUILD_PYTHON_BINDINGS=bool:true \
-  -DPYTHON_EXECUTABLE=/usr/bin/python2.7 \
-  -DPYTHON_LIBS=/usr/lib/x86_64-linux-gnu/libpython2.7.so
+if [ $OS_V != "aarch" ]; then
+  cmake \
+    -D CMAKE_BUILD_TYPE=release \
+    ../ \
+    -DBUILD_EXAMPLES=true \
+    -DBUILD_CV_EXAMPLES=bool:true \
+    -DBUILD_PYTHON_BINDINGS=bool:true \
+    -DPYTHON_EXECUTABLE=/usr/bin/python2.7 \
+    -DPYTHON_LIBS=/usr/lib/x86_64-linux-gnu/libpython2.7.so
+else
+  cmake \
+    -D CMAKE_BUILD_TYPE=release \
+    ../ \
+    -DBUILD_PYTHON_BINDINGS=bool:true \
+    -DPYTHON_EXECUTABLE=/usr/bin/python2.7 \
+    -DPYTHON_LIBS=/usr/lib/aarch64-linux-gnu/libpython2.7.so
+fi
+  
 make -j $(($(nproc) + 1))
 sudo make install
 
-sudo pip3 install pyrealsense2
+if [ $OS_V != "aarch" ]; then
+  sudo pip3 install pyrealsense2
 
-cd $DIR/librealsense
-mkdir -p data
-cd data
-wget -N http://realsense-hw-public.s3.amazonaws.com/rs-tests/TestData/object_detection.bag
-wget -N https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/master/MobileNetSSD_deploy.prototxt
-wget -N http://realsense-hw-public.s3.amazonaws.com/rs-tests/TestData/MobileNetSSD_deploy.caffemodel
+  cd $DIR/librealsense
+  mkdir -p data
+  cd data
+  wget -N http://realsense-hw-public.s3.amazonaws.com/rs-tests/TestData/object_detection.bag
+  wget -N https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/master/MobileNetSSD_deploy.prototxt
+  wget -N http://realsense-hw-public.s3.amazonaws.com/rs-tests/TestData/MobileNetSSD_deploy.caffemodel
+fi
 
 # Install for ROS
 #sudo apt-get install -y ros-kinetic-realsense-camera

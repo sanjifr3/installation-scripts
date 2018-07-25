@@ -1,8 +1,13 @@
 #!/bin/bash
 DIR=${PROGRAM_PATH:-$HOME/programs}
+OS_V=${OS_VERSION:-16.04}
 
-#FIXED_FILES_PATH=$PWD/`dirname "$0"`/yolo
-FIXED_FILES_PATH=$HOME/casper-vision/scripts/install/yolo
+SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+if [ -d $SCRIPTPATH/yolo ]; then
+  SCRIPTPATH=$SCRIPTPATH/yolo
+elif [ -d $SCRIPTPATH/install/yolo ]; then
+  SCRIPTPATH=$SCRIPTPATH/install/yolo
+fi
 
 echo "Installing YOLO in $DIR..."
 
@@ -12,8 +17,11 @@ cd $DIR
 #rm -rf darknet
 
 # Clone repo
-git clone https://github.com/pjreddie/darknet.git pj_darknet
 git clone https://github.com/sanjifr3/darknet.git
+
+if [ $OS_V != "aarch" ]; then
+  git clone https://github.com/pjreddie/darknet.git pj_darknet
+fi
 
 cd darknet
 git pull
@@ -32,22 +40,25 @@ cd $DIR/darknet
 
 # Download weights
 cd weights
-wget https://pjreddie.com/media/files/yolo.weights
 wget https://pjreddie.com/media/files/yolov3.weights
-wget https://pjreddie.com/media/files/yolo-voc.weights
-wget https://pjreddie.com/media/files/alexnet.weights
-wget https://pjreddie.com/media/files/yolov2-tiny.weights
-wget https://pjreddie.com/media/files/tiny-yolo.weights
-wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
+wget https://pjreddie.com/media/files/yolov3-tiny.weights
 wget https://pjreddie.com/media/files/yolo9000.weights
 
-# Download conv
-cd ../conv
-wget https://pjreddie.com/media/files/darknet19_448.conv.23
-wget https://pjreddie.com/media/files/tiny-yolo-voc.conv.13
-wget https://pjreddie.com/media/files/darknet53.conv.74
+if [ $OS_V != "aarch" ]; then
+  wget https://pjreddie.com/media/files/yolo.weights
+  wget https://pjreddie.com/media/files/yolo-voc.weights
+  wget https://pjreddie.com/media/files/alexnet.weights
+  wget https://pjreddie.com/media/files/yolov2-tiny.weights
+  wget https://pjreddie.com/media/files/tiny-yolo.weights
+  wget https://pjreddie.com/media/files/tiny-yolo-voc.weights
 
-cd $FIXED_FILES_PATH
+  cd ../conv
+  wget https://pjreddie.com/media/files/darknet19_448.conv.23
+  wget https://pjreddie.com/media/files/tiny-yolo-voc.conv.13
+  wget https://pjreddie.com/media/files/darknet53.conv.74
+fi
+
+cd $SCRIPTPATH
 cd ../..
 
 # Add yolo to bashrc

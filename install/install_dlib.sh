@@ -1,5 +1,6 @@
 #!/bin/bash
 VERSION=${DLIB_VERSION:-19.9}
+OS_V=${OS_VERSION:-16.04}
 DIR=${PROGRAM_PATH:-$HOME/programs}
 GPU=${USE_GPU:-1}
 PY2=${INSTALL_PY2:-1}
@@ -38,18 +39,20 @@ cmake --build .
 sudo make install
 
 # Get models
-cd $DIR/dlib
-mkdir -p models
-cd models
+if [ $OS_V != "aarch" ]; then
+  cd $DIR/dlib
+  mkdir -p models
+  cd models
 
-wget http://dlib.net/files/shape_predictor_5_face_landmarks.dat.bz2
-wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
-wget http://dlib.net/files/mmod_human_face_detector.dat.bz2
-wget http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2
-wget http://dlib.net/files/resnet34_1000_imagenet_classifier.dnn.bz2
+  wget http://dlib.net/files/shape_predictor_5_face_landmarks.dat.bz2
+  wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+  wget http://dlib.net/files/mmod_human_face_detector.dat.bz2
+  wget http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2
+  wget http://dlib.net/files/resnet34_1000_imagenet_classifier.dnn.bz2
 
-bzip2 -d shape_predictor_5_face_landmarks.dat.bz2
-bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
-bzip2 -d mmod_human_face_detector.dat.bz2
-bzip2 -d dlib_face_recognition_resnet_model_v1.dat.bz2
-bzip2 -d resnet34_1000_imagenet_classifier.dnn.bz2
+  bzip2 -d shape_predictor_5_face_landmarks.dat.bz2
+  bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
+  bzip2 -d mmod_human_face_detector.dat.bz2
+  bzip2 -d dlib_face_recognition_resnet_model_v1.dat.bz2
+  bzip2 -d resnet34_1000_imagenet_classifier.dnn.bz2
+fi
