@@ -11,7 +11,13 @@ for PKG in \
   rosserial-arduino \
 ; do sudo apt-get install -y --upgrade ros-$VERSION-$PKG ; done
 
+# Install Arduino if it doesn't exist
+if [ ! -d "~/Arduino" ]; then
+  sudo apt-get install arduino
+fi
+
 # Install ros_lib into Arduino Environment
-cd ~/Arduino/libraries
-rm -rf ros_lib
-rosrun rosserial_arduino make_libraries.py .
+if [ -d "~/Arduino/libraries" ]; then
+  cd ~/Arduino/libraries
+  rm -rf ros_lib
+  rosrun rosserial_arduino make_libraries.py .
