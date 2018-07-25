@@ -12,22 +12,24 @@
 ######################################################################################
 
 # Installation Control
-PREREQ=1
-ROS=1
-PY2_LIBS=1
-PY3_LIBS=1
-CUDA=1
-CUDNN=1
-OPENCV=1
-DLIB=1
-TORCH=1
-OPENFACE=1
-PYTORCH=1
-YOLO=1
-TF=1
-ASTRA=1
+PREREQ=0
+ROS=0
+PY2_LIBS=0
+PY3_LIBS=0
+CUDA=0
+CUDNN=0
+OPENCV=0
+DLIB=0
+TORCH=0
+OPENFACE=0
+PYTORCH=0
+YOLO=0
+TF=0
+ASTRA=0
 REALSENSE=0
-AWS=1
+AWS=0
+ARDUINO=0
+DESPOT=0
 
 # Override defaults for following install scripts
 export OS_VERSION=16.04 # 16.04 # aarch # 14.04
@@ -104,3 +106,9 @@ if [ $REALSENSE -eq 1 ]; then ./install/install_realsense.sh; fi
 
 # Install AWS/Polly
 if [ $AWS -eq 1 ]; then ./install/install_aws.sh; fi
+
+# Install Arduino
+if [ $ARDUINO -eq 1 ]; then ./install/install_arduino.sh; fi
+
+# Install Despot
+[f [ $DESPOT -eq 1 ]; then ./install/install_despot.sh; fi
