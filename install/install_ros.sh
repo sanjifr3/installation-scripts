@@ -17,7 +17,7 @@ fi
 
 ## Update
 sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y upgrade
 
 ## Install ROS main
 if [ $OS_V == "aarch" ]; then 
@@ -59,7 +59,7 @@ sudo rosdep init
 rosdep update
 
 # Install rosinstall
-sudo apt-get install python-rosinstall python-rosinstall-generator -y
+sudo apt-get install -y python-rosinstall python-rosinstall-generator
 
 # Bashrc Lines:
 #source /opt/ros/kinetic/setup.bash

@@ -26,4 +26,4 @@ else
 fi
 
 cp /etc/ld.so.conf.d/cuda-9-0.conf $DIR/cuda
-sudo mv $HOME/casper-vision/scripts/install/cuda/cuda-9-0.conf /etc/ld.so.conf.d
+#sudo mv $HOME/mia-robot/installation-scripts/install/cuda/cuda-9-0.conf /etc/ld.so.conf.d
