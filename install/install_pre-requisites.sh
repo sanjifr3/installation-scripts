@@ -9,90 +9,46 @@ if [ $OS_V != "aarch" ]; then
   echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 fi
 
-sudo add-apt-repository ppa:gnome-terminator
+#sudo add-apt-repository ppa:gnome-terminator
 
 sudo apt-get update
 
-# Install ubuntu packages
-for PKG in \
-  libsdl1.2-dev \
-  libsdl-image1.2-dev \
-  libsdl-mixer1.2-dev \
-  libsdl-ttf2.0-dev \
-  build-essential \
-  cmake \
-  git \
-  libgtk2.0-dev \
-  pkg-config \
-  openssh-server \
-  openssh-client \
-  libavcodec-dev \
-  libavformat-dev \
-  libswscale-dev \
-  python-dev \
-  python-numpy \
-  libtbb2 \
-  libv4l-dev \
-  libtbb-dev \
-  libjpeg8-dev \
-  libpng12-dev \
-  libtiff4-dev \
-  libjasper-dev \
-  libatlas-base-dev \
-  gfortran \
-  libdc1394-22-dev \
-  cloud-utils \
-  nautilus-open-terminal \
-  libapache2-mod-dnssd \
-  samba \
-  xclip \
-  python2.7-dev \
-  libhdf5-serial-dev \
-  libatlas-base-dev \
-  gfortran \
-  libavcodec-dev \
-  libavformat-dev \
-  libswscale-dev \
-  libv4l-dev \
-  libgtk2.0-dev \
-  libjpeg8-dev \
-  libtiff5-dev \
-  libjasper-dev \
-  libpng12-dev \
-  make \
-  build-essential \
-  libssl-dev \
-  zlib1g-dev \
-  libbz2-dev \
-  libreadline-dev \
-  libsqlite3-dev \
-  wget \
-  curl \
-  llvm \
-  libncurses5-dev \
-  libncursesw5-dev \
-  xz-utils \
-  libxml2-dev \
-  pcl-tools \
-  libxslt-dev \
-  python-dev \
-  gparted \
-  python-setuptools \
-  python-pip \
-  python-wstool \
-  terminator \
-; do sudo apt-get install -y --upgrade $PKG ; done
-  # libgflags-dev \
-  # qt5-default \
-# Install ubuntu packages w/o installation recommends
-for PKG in \
-  thunar \
-; do sudo apt-get install -y --no-install-recommends $PKG ; done
+PACKAGES=''
+if [ $OS_V != "aarch" ]; then
+  PACKAGES=(
+    libsdl1.2-dev libsdl-image1.2-dev libsdl-mixer1.2-dev libsdl-ttf2.0-dev build-essential
+    cmake git libgtk2.0-dev pkg-config openssh-server openssh-client libavcodec-dev 
+    libavformat-dev libswscale-dev python-dev python-numpy libtbb2 libv4l-dev libtbb-dev
+    libjpeg8-dev libpng12-dev libtiff4-dev libjasper-dev libatlas-base-dev gfortran 
+    libdc1394-22-dev cloud-utils nautilus-open-terminal libapache2-mod-dnssd samba xclip
+    python2.7-dev libhdf5-serial-dev libavcodec-dev libavformat-dev libswscale-dev libtiff5-dev
+    make libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm 
+    libncurses5-dev libncursesw5-dev xz-utils libxml2-dev pcl-tools libxslt-dev gparted 
+    python-setuptools python-pip python-wstool terminator
+  )
+else
+  PACKAGES=(
+    build-essential
+    cmake git libgtk2.0-dev pkg-config openssh-server openssh-client libavcodec-dev 
+    libavformat-dev libswscale-dev python-dev python-numpy libtbb2 libv4l-dev libtbb-dev
+    libjpeg8-dev libpng12-dev libtiff4-dev libjasper-dev libatlas-base-dev gfortran 
+    libdc1394-22-dev cloud-utils libapache2-mod-dnssd samba xclip
+    python2.7-dev libhdf5-serial-dev libavcodec-dev libavformat-dev libswscale-dev libtiff5-dev
+    make libssl-dev zlib1g-dev libbz2-dev libreadline-dev wget curl llvm 
+    xz-utils libxml2-dev pcl-tools libxslt-dev gparted 
+    python-setuptools python-pip python-wstool terminator
+  )
+fi
+
+sudo apt-get install -y --upgrade ${PACKAGES[*]}
+#for PKG in ${PACKAGES[*]}; do sudo apt-get install -y --upgrade $PKG ; done
 
 if [ $OS_V == "16.04" ]; then 
   sudo apt-get install -y --upgrade python3.5-dev sublime-text nautilus-actions
+  sudo apt-get install -y --no-install-recommends thunar
 elif [ $OS_V == "14.04" ]; then 
   sudo apt-get install -y --upgrade python3.4-dev nautilus-open-terminal sublime-text
+  sudo apt-get install -y --no-install-recommends thunar
 elif [ $OS_V == "aarch" ]; then
   sudo apt-get install -y --upgrade python3.5-dev
 fi
