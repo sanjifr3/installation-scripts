@@ -141,7 +141,7 @@ if [ $OS_VERSION == "aarch" ]; then
   #sudo gedit /etc/fstab # Delete contents of entire file
   rm -rf /media/nvidia/$EXT_NAME/swapfile
   
-  sudo apt clean
-  sudo apt autoremove --purge
-  sudo rm /usr/src/*.tbz2
+  #sudo apt clean
+  #sudo apt autoremove --purge
+  #sudo rm /usr/src/*.tbz2
 fi
