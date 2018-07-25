@@ -60,12 +60,12 @@ cd librealsense
 git checkout tags/v${VERSION}
 
 sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
+sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
 
-sudo apt-get install git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
+sudo apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
 
-sudo apt-get install libglfw3-dev cmake build-essential
+sudo apt-get install -y libglfw3-dev cmake build-essential
 
 # Set udev rules for camera
 sudo cp config/99-realsense-libusb.rules /etc/udev/rules.d/

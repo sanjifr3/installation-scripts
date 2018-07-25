@@ -13,7 +13,7 @@ for PKG in \
 
 # Install Arduino if it doesn't exist
 if [ ! -d "~/Arduino" ]; then
-  sudo apt-get install arduino
+  sudo apt-get install -y arduino
 fi
 
 # Install ros_lib into Arduino Environment

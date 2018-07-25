@@ -39,7 +39,7 @@ DESPOT=${INSTALL_DESPOT:-0}
 #export OPENFACE_VERSION=0.2.1
 #export CUDA_VERSION=9.0
 #export CUDNN_VERSION=7.1
-#export OPENCV_VERSION=3.3.1
+export OPENCV_VERSION=3.4.0
 #export PYTORCH_VERSION=0.3.1
 #export TF_VERSION=1.6.0-rc1
 #export BAZEL_VERSION=0.10.1
@@ -98,10 +98,16 @@ if [ $CUDA -eq 1 ]; then ./install/install_cuda.sh; fi
 if [ $CUDNN -eq 1 ]; then ./install/install_cudnn.sh; fi
 
 # Install OpenCV
-if [ $OPENCV -eq 1 ]; then ./install/install_opencv.sh; fi
+if [ $OPENCV -eq 1 ]; then 
+  ./install/install_opencv.sh
+  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/opencv$OPENCV_VERSION; fi
+fi
 
 # Install DLIB
-if [ $DLIB -eq 1 ]; then ./install/install_dlib.sh; fi
+if [ $DLIB -eq 1 ]; then
+  ./install/install_dlib.sh
+  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/dlib; fi
+fi
 
 # Install Torch
 if [ $TORCH -eq 1 ]; then ./install/install_torch.sh; fi
@@ -110,13 +116,19 @@ if [ $TORCH -eq 1 ]; then ./install/install_torch.sh; fi
 if [ $OPENFACE -eq 1 ]; then ./install/install_openface.sh; fi
 
 # Install PyTorch
-if [ $PYTORCH -eq 1 ]; then ./install/install_pytorch.sh; fi
+if [ $PYTORCH -eq 1 ]; then
+  ./install/install_pytorch.sh 
+  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/pytorch; fi
+fi
 
 # Install YOLO
 if [ $YOLO -eq 1 ]; then ./install/install_yolo.sh; fi
 
 # Install TensorFlow
-if [ $TF -eq 1 ]; then ./install/install_tensorflow.sh; fi
+if [ $TF -eq 1 ]; then
+  ./install/install_tensorflow.sh
+  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/tensorflow; fi
+fi
 
 # Install Astra
 if [ $ASTRA -eq 1 ]; then ./install/install_astra.sh; fi
@@ -131,7 +143,10 @@ if [ $AWS -eq 1 ]; then ./install/install_aws.sh; fi
 if [ $ARDUINO -eq 1 ]; then ./install/install_arduino.sh; fi
 
 # Install Despot
-if [ $DESPOT -eq 1 ]; then ./install/install_despot.sh; fi
+if [ $DESPOT -eq 1 ]; then
+  ./install/install_despot.sh
+  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/despot; fi
+fi
 
 # Deactivate swap
 if [ $OS_VERSION == "aarch" ]; then
