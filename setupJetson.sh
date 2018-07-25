@@ -12,10 +12,9 @@
 ######################################################################################
 
 # Installation Control
-PREREQ=1
-ROS=1
-PY2_LIBS=1
-PY3_LIBS=0
+PREREQ=0
+ROS=0
+PY2_LIBS=0
 CUDA=0
 CUDNN=1
 OPENCV=1
