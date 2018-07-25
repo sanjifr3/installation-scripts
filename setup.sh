@@ -131,7 +131,7 @@ if [ $AWS -eq 1 ]; then ./install/install_aws.sh; fi
 if [ $ARDUINO -eq 1 ]; then ./install/install_arduino.sh; fi
 
 # Install Despot
-[f [ $DESPOT -eq 1 ]; then ./install/install_despot.sh; fi
+if [ $DESPOT -eq 1 ]; then ./install/install_despot.sh; fi
 
 # Deactivate swap
 if [ $OS_VERSION == "aarch" ]; then

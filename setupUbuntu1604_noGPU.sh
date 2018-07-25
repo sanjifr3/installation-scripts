@@ -12,24 +12,24 @@
 ######################################################################################
 
 # Installation Control
-PREREQ=0
-ROS=0
-PY2_LIBS=0
-PY3_LIBS=0
+PREREQ=1
+ROS=1
+PY2_LIBS=1
+PY3_LIBS=1
 CUDA=0
-CUDNN=1
-OPENCV=0
+CUDNN=0
+OPENCV=1
 DLIB=0
 TORCH=0
-OPENFACE=1
-YOLO=1
-PYTORCH=1
-TF=1
-ASTRA=1
-REALSENSE=1
+OPENFACE=0
+YOLO=0
+PYTORCH=0
+TF=0
+ASTRA=0
+REALSENSE=0
 AWS=1
-ARDUINO=0
-DESPOT=0
+ARDUINO=1
+DESPOT=1
 
 export OS_VERSION=16.04
 export ROS_VERSION=kinetic
