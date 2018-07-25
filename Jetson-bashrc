@@ -1,0 +1,50 @@
+# Aliases
+alias bashrc="gedit ~/.bashrc"
+alias pycharm="pycharm.sh"
+alias blu="cd ~/blueberry"
+alias makeblu="cd ~/blueberry && catkin_make"
+alias srcbash="source ~/.bashrc"
+alias open="nautilus ."
+alias ..="cd .."
+alias push="git push origin"
+alias pull="git pull"
+alias checkout="git checkout"
+alias commit="git commit -m"
+alias acommit="git add --all && git commit -m"
+alias grepr="grep -rnw . -e"
+alias rqtreconfig="rosrun rqt_reconfigure rqt_reconfigure"
+
+# Darknet
+export PYTHONPATH=$PYTHONPATH:$HOME/programs/darknet/python
+
+# Torch
+. $HOME/programs/torch/install/bin/torch-activate
+
+# Astra
+export OPENNI2_INCLUDE=$OPENNI2_INCLUDE:$HOME/programs/astra/OpenNI-Linux-x86-2.3/Include
+export OPENNI2_INCLUDE=$OPENNI2_INCLUDE:$HOME/programs/astra/OpenNI-Linux-x86-2.3/ExtendedAPI
+
+export ASTRA_SDK_INCLUDE=$HOME/programs/astra/AstraSDK/install/include
+export ASTRA_SDK_LIB=$HOME/programs/astra/AstraSDK/install/lib
+export ASTRA_SDK_INCLUDE=$ASTRA_SDK_INCLUDE:$HOME/programs/astra/AstraSDK/include
+export ASTRA_SDK_LIB=$ASTRA_SDK_LIB:$HOME/programs/astra/AstraSDK/lib
+
+export PYTHONPATH=$PYTHONPATH:/usr/local/lib
+#export OpenCV_DIR=~/programs/opencv/opencv/release
+
+# CUDA ENV Variables
+export CUDA_VERSION=9.0
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-9.0/bin:$PATH
+#export PATH=/usr/local/cuda-9.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin
+
+source /opt/ros/kinetic/setup.bash
+
+export ROS_WORKSPACE=$HOME/jetson-vision
+
+source $ROS_WORKSPACE/devel/setup.bash
+export ROS_HOSTNAME=tegra-ubuntu.local
+export ROSLAUNCH_SSH_UNKNOWN=1
+export EDITOR=gedit
+
+export ROBOT=jetson

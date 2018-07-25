@@ -12,19 +12,19 @@
 ######################################################################################
 
 # Installation Control
-PREREQ=0
-ROS=0
-PY2_LIBS=0
+PREREQ=1
+ROS=1
+PY2_LIBS=1
 PY3_LIBS=0
 CUDA=0
-CUDNN=0
-OPENCV=0
-DLIB=0
-TORCH=0
+CUDNN=1
+OPENCV=1
+DLIB=1
+TORCH=1
 OPENFACE=0
 PYTORCH=0
 YOLO=0
-TF=1
+TF=0
 ASTRA=0
 REALSENSE=0
 AWS=0
