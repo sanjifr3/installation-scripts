@@ -5,7 +5,13 @@ DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
 
 #if [ $OS_V == "aarch" ]; then
-#  RS_SCRIPTS_PATH=$HOME/installation-scripts/install/realsense
+#  RS_SCRIPTS_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+#  if [ -d $RS_SCRIPTS_PATH/realsense ]; then
+#    RS_SCRIPTS_PATH=$RS_SCRIPTS_PATH/realsense
+#  elif [ -d $RS_SCRIPTS_PATH/install/realsense ]; then
+#    RS_SCRIPTS_PATH=$RS_SCRIPTS_PATH/install/realsense
+#  fi
   #
   #cd $RS_SCRIPTS_PATH
   

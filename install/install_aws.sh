@@ -5,6 +5,12 @@
 sudo apt-get install -y awscli &&
 mkdir -p ~/.aws/ &&
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
-cp $SCRIPTPATH/polly/credentials/* ~/.aws
+
+if [ -d $SCRIPTPATH/polly ]; then
+  cp $SCRIPTPATH/polly/credentials/* ~/.aws
+elif [ -d $SCRIPTPATH/install/polly ]; then
+  cp $SCRIPTPATH/install/polly/credentials/* ~/.aws
+fi
+
 
 

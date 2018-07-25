@@ -13,7 +13,13 @@ if echo $TF | grep -q "rc"; then TF_=${TF%-*}${TF##*-}
 else TF_=$TF; fi
 
 #TF_SCRIPTS_PATH=$PWD/`dirname "$0"`/tensorflow
-TF_SCRIPTS_PATH=$HOME/installation-scripts/install/tensorflow
+TF_SCRIPTS_PATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+if [ -d $TF_SCRIPTS_PATH/tensorflow ]; then
+  TF_SCRIPTS_PATH=$TF_SCRIPTS_PATH/tensorflow
+elif [ -d $TF_SCRIPTS_PATH/install/tensorflow ]; then
+  TF_SCRIPTS_PATH=$TF_SCRIPTS_PATH/install/tensorflow
+fi
 
 cd $DIR
 #rm -rf tensorflow

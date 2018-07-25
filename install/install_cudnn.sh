@@ -33,4 +33,9 @@ else
 fi
 
 #cp /etc/ld.so.conf.d/cuda-9-0.conf $DIR/cuda
-#sudo mv $HOME/mia-robot/installation-scripts/install/cuda/cuda-9-0.conf /etc/ld.so.conf.d
+#SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+#if [ -d $SCRIPTPATH/cuda ]; then
+#  cp $SCRIPTPATH/cuda/cuda-9-0.conf /etc/ld.so.conf.d
+#elif [ -d $SCRIPTPATH/install/polly ]; then
+#  cp $SCRIPTPATH/install/cuda/cuda-9-0.conf /etc/ld.so.conf.d
+#fi
