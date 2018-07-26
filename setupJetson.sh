@@ -24,18 +24,21 @@ TORCH=0
 OPENFACE=0
 YOLO=0
 PYTORCH=0
-TF=0
+TF=1
 ASTRA=0
 REALSENSE=1
 AWS=0
 ARDUINO=0
 DESPOT=0
 
+CREATE_SWAP=0
+
 export OS_VERSION=aarch
 export ROS_VERSION=kinetic
 export USE_GPU=1
 export INSTALL_PY2=1
 export INSTALL_PY3=0
+
 
 ######################################################################################
 
@@ -57,5 +60,6 @@ export INSTALL_REALSENSE=$REALSENSE
 export INSTALL_AWS=$AWS
 export INSTALL_ARDUINO=$ARDUINO
 export INSTALL_DESPOT=$DESPOT
+export CREATE_SWAP=$CREATE_SWAP
 
 ./setup.sh

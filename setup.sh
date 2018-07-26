@@ -30,6 +30,7 @@ REALSENSE=${INSTALL_REALSENSE:-0}
 AWS=${INSTALL_AWS:-0}
 ARDUINO=${INSTALL_ARDUINO:-0}
 DESPOT=${INSTALL_DESPOT:-0}
+SWAP=${CREATE_SWAP:-0}
 
 # Override defaults for following install scripts
 #export OS_VERSION=16.04 # 16.04 # aarch # 14.04
@@ -61,18 +62,20 @@ mkdir -p $PROGRAM_PATH/nvidia-jetpack
 DIR=$PWD
 
 # Activate all cores
-if [ $OS_VERSION == "aarch" ]; then
+if [ $OS_VERSION == "aarch" ];
   # Activate all CPU cores for build
-	sudo nvpmodel -m 0
-	sudo bash ~/jetson_clocks.sh
+  sudo nvpmodel -m 0
+  sudo bash ~/jetson_clocks.sh
 	
-	cd $PROGRAM_PATH
-	git clone https://github.com/jetsonhacks/postFlashTX1
-	cd postFlashTX1
+  if [ $SWAP -eq 1 ]; then
+    cd $PROGRAM_PATH
+    git clone https://github.com/jetsonhacks/postFlashTX1
+    cd postFlashTX1
 
-	# Change 'sanjif32SD' to name of the SD card drive	
-	sudo ./createSwapfile.sh -d /media/nvidia/$EXT_NAME/ -s 16 -a
-	swapon
+    # Change 'sanjif32SD' to name of the SD card drive	
+    sudo ./createSwapfile.sh -d /media/nvidia/$EXT_NAME/ -s 16 -a
+    swapon
+  fi
 fi
 
 cd $DIR
@@ -149,7 +152,7 @@ if [ $DESPOT -eq 1 ]; then
 fi
 
 # Deactivate swap
-if [ $OS_VERSION == "aarch" ]; then
+if [ $OS_VERSION == "aarch" ] && [ $SWAP -eq 1 ]; then
   sudo swapoff --all
   sudo mv /etc/fstab /etc/fstab.back
   sudo cp `dirname "$0"`/tensorflow/fstab /etc/ 
