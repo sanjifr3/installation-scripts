@@ -62,7 +62,7 @@ mkdir -p $PROGRAM_PATH/nvidia-jetpack
 DIR=$PWD
 
 # Activate all cores
-if [ $OS_VERSION == "aarch" ];
+if [ $OS_VERSION == "aarch" ]; then
   # Activate all CPU cores for build
   sudo nvpmodel -m 0
   sudo bash ~/jetson_clocks.sh
