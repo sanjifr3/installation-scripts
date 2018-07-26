@@ -5,8 +5,10 @@
 DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
 CUDA=${CUDA_VERSION:-9.0}
-CUDNN=${CUDNN_VERSION:-7}
+CUDNN=${CUDNN_VERSION:-7.0.5}
 PY=${USE_PY:-2.7}
+
+IFS='.' read -ra CUDNN_SPLIT <<< "$CUDNN"
 
 default_python_bin_path=$(which python)
 default_cudnn_path=/usr/local/cuda
@@ -45,7 +47,7 @@ export TF_CUDA_VERSION=$CUDA
 export default_cuda_path=/usr/local/cuda
 export CUDA_TOOLKIT_PATH=$default_cuda_path
 # cuDNN
-export TF_CUDNN_VERSION=$CUDNN
+export TF_CUDNN_VERSION=${CUDNN_SPLIT[0]}
 export CUDNN_INSTALL_PATH=$default_cudnn_path
 # CUDA compute capability
 export CC_OPT_FLAGS=-march=native

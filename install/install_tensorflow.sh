@@ -39,7 +39,7 @@ if [ $PY2 -eq 1 ]; then
   export USE_PY=2.7
 
   TF_WHL=tensorflow-${TF_}-cp27-cp27mu-linux_
-  if [ $OS_V == 'aarch' ]; then TF_WHL=${TF_WHL}aarch64.whl;
+  if [ $OS_V == "aarch" ]; then TF_WHL=${TF_WHL}aarch64.whl;
   else TF_WHL=${TF_WHL}x86_64.whl; fi
 
   if [ ! -f $DIR/$TF_WHL ]; then
@@ -56,7 +56,7 @@ if [ $PY3 -eq 1 ]; then
   export USE_PY=3.5
   
   TF_WHL=tensorflow-${TF_}-cp35-cp35m-linux_
-  if [ $OS_V == 'aarch' ]; then TF_WHL=${TF_WHL}aarch64.whl;
+  if [ $OS_V == "aarch" ]; then TF_WHL=${TF_WHL}aarch64.whl;
   else TF_WHL=${TF_WHL}x86_64.whl; fi
   
   if [ ! -f $DIR/$TF_WHL ]; then

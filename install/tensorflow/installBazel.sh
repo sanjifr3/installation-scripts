@@ -13,6 +13,7 @@ wget --no-check-certificate https://github.com/bazelbuild/bazel/releases/downloa
 unzip bazel-${VERSION}-dist.zip -d bazel-${VERSION}-dist
 sudo chmod -R ug+rwx bazel-${VERSION}-dist
 cd bazel-${VERSION}-dist
-./compile.sh 
+./compile.sh
 sudo cp output/bazel /usr/local/bin
-rm ../bazel-${VERSION}-dist.zip
+cd $DIR
+rm bazel-${VERSION}-dist.zip
