@@ -19,9 +19,9 @@ cd $DIR
 # Clone repo
 git clone https://github.com/sanjifr3/darknet.git
 
-if [ $OS_V != "aarch" ]; then
-  git clone https://github.com/pjreddie/darknet.git pj_darknet
-fi
+#if [ $OS_V != "aarch" ]; then
+git clone https://github.com/pjreddie/darknet.git pj_darknet
+#fi
 
 cd darknet
 git pull
