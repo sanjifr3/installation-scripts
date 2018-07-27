@@ -24,7 +24,7 @@ if [ $OS_V != "aarch" ]; then
     python2.7-dev libhdf5-serial-dev libavcodec-dev libavformat-dev libswscale-dev libtiff5-dev
     make libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm 
     libncurses5-dev libncursesw5-dev xz-utils libxml2-dev pcl-tools libxslt-dev gparted 
-    python-setuptools python-pip python-wstool terminator ncdu
+    python-setuptools python-pip python-wstool terminator ncdu libproj-dev
   )
 else
   PACKAGES=(
@@ -36,7 +36,7 @@ else
     python2.7-dev libhdf5-serial-dev libavcodec-dev libavformat-dev libswscale-dev libtiff5-dev
     make libssl-dev zlib1g-dev libbz2-dev libreadline-dev wget curl llvm 
     xz-utils libxml2-dev pcl-tools libxslt-dev gparted 
-    python-setuptools python-pip python-wstool terminator ncdu
+    python-setuptools python-pip python-wstool terminator ncdu libproj-dev
   )
 fi
 

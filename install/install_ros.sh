@@ -43,6 +43,7 @@ for PKG in \
   libuvc-camera \
   audio-common \
   pcl-ros \
+  rqt-reconfigure \
 ; do sudo apt-get install -y --upgrade ros-$VERSION-$PKG ; done
 
 ## Install ROS main

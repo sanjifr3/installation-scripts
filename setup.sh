@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Update bashrc prior to running script
+
 # Version sets in respective installation scripts inside ./scripts/
 
 # install jetpack - follow instructions below
@@ -31,6 +33,8 @@ AWS=${INSTALL_AWS:-0}
 ARDUINO=${INSTALL_ARDUINO:-0}
 DESPOT=${INSTALL_DESPOT:-0}
 SWAP=${CREATE_SWAP:-0}
+RPLIDAR=${INSTALL_RPLIDAR:-0}
+RESPEAKER=${INSTALL_RESPEAKER:-0}
 
 # Override defaults for following install scripts
 #export OS_VERSION=16.04 # 16.04 # aarch # 14.04
@@ -150,6 +154,15 @@ if [ $DESPOT -eq 1 ]; then
   ./install/install_despot.sh
   if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/despot; fi
 fi
+
+roscd
+catkin_make
+
+# Install Respeaker
+if [ $RESPEAKER -eq 1 ]; then ./install/install_respeaker.sh; fi
+
+# Install RPLidar
+if [ $RPLIDAR -eq 1 ]; then ./install/install_rplidar.sh; fi
 
 # Deactivate swap
 if [ $OS_VERSION == "aarch" ] && [ $SWAP -eq 1 ]; then

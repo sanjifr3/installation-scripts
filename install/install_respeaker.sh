@@ -27,7 +27,8 @@ git clone https://github.com/respeaker/pixel_ring.git
 cd pixel_ring
 sudo python setup.py install
 
-cd ~/mia-main
+roscd respeaker_ros
+cd ../..
 rosdep install --from-paths src -i -r -n -y
 catkin_make
 source devel/setup.bash
