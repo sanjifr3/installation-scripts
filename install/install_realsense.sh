@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=${REALSENSE_VERSION:-2.10.4}
+VERSION=${REALSENSE_VERSION:-2.12.0}
 WRAPPER_VERSION=${REALSENSE_ROS_VERSION:-2.0.3}
 DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
@@ -52,37 +52,36 @@ OS_V=${OS_VERSION:-16.04}
 #  exit 0
 #fi
 
-# Pull git and checkout version
 cd $DIR
 sudo rm -rf librealsense
-git clone https://github.com/IntelRealSense/librealsense
-cd librealsense
-git checkout tags/v${VERSION}
 
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
 
 sudo apt-get install -y git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev
-
 sudo apt-get install -y libglfw3-dev cmake build-essential
+sudo apt-get install -y qtcreator cmake-curses-gui
 
+# Pull git and checkout version
+git clone https://github.com/IntelRealSense/librealsense
+cd librealsense
+git checkout tags/v${VERSION}
+  
 # Set udev rules for camera
 sudo cp config/99-realsense-libusb.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && udevadm trigger
 
 sudo chmod +x scripts/*.sh
 
-# Download, patch, and build realsense-affected kernel modules (drivers)
-if [ $OS_V == "aarch" ]; then
-  cd scripts
-  ./patch-arch.sh
-  cd ..
-else
-  ./scripts/patch-realsense-ubuntu-xenial-joule.sh  
+if [ $OS_V == "16.04" ]; then
+  ./scripts/patch-realsense-ubuntu-xenial-joule.sh
+elif [ $OS_V == "aarch" ]; then
+  ./scripts/patch-utils.sh.sh
 fi
 
 echo "hid_sensor_custom" | sudo tee -a /etc/modules
+  
 gedit CMakeLists.txt
 # Add the following at row 22 of CMakeList.txt
 #find_package (OpenCV 3.4.0 EXACT REQUIRED
@@ -90,16 +89,15 @@ gedit CMakeLists.txt
 #  PATHS /usr/local
 #  NO_DEFAULT_PATH
 #)
-
+  
 mkdir -p build
 cd build
 
 # Uninstall previous installation
-sudo make uninstall 
+sudo make uninstall
 make clean
 
-# Install librealsense
-if [ $OS_V != "aarch" ]; then
+if [ $OS_V == "16.04" ]; then 
   cmake \
     -D CMAKE_BUILD_TYPE=release \
     ../ \
@@ -108,15 +106,10 @@ if [ $OS_V != "aarch" ]; then
     -DBUILD_PYTHON_BINDINGS=bool:true \
     -DPYTHON_EXECUTABLE=/usr/bin/python2.7 \
     -DPYTHON_LIBS=/usr/lib/x86_64-linux-gnu/libpython2.7.so
-else
-  cmake \
-    -D CMAKE_BUILD_TYPE=release \
-    ../ \
-    -DBUILD_PYTHON_BINDINGS=bool:true \
-    -DPYTHON_EXECUTABLE=/usr/bin/python2.7 \
-    -DPYTHON_LIBS=/usr/lib/aarch64-linux-gnu/libpython2.7.so
+elif [ $OS_V == "aaarch" ]; then
+  cmake ../ -DBUILD_EXAMPLES=true
 fi
-  
+
 make -j $(($(nproc) + 1))
 sudo make install
 
@@ -129,6 +122,12 @@ if [ $OS_V != "aarch" ]; then
   wget -N http://realsense-hw-public.s3.amazonaws.com/rs-tests/TestData/object_detection.bag
   wget -N https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/master/MobileNetSSD_deploy.prototxt
   wget -N http://realsense-hw-public.s3.amazonaws.com/rs-tests/TestData/MobileNetSSD_deploy.caffemodel
+fi
+
+if [ $OS_V == "aarch" ]; then
+  sudo sed -i '$s/$/ usbcore.autosuspend=-1/'  /boot/extlinux/extlinux.conf
+  # /bin/ required for echo to work correctly in /bin/sh file
+  /bin/echo -e "\e[1;32mPlease reboot for changes to take effect.\e[0m"
 fi
 
 # Install for ROS
