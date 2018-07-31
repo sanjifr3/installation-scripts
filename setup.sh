@@ -107,13 +107,13 @@ if [ $CUDNN -eq 1 ]; then ./install/install_cudnn.sh; fi
 # Install OpenCV
 if [ $OPENCV -eq 1 ]; then 
   ./install/install_opencv.sh
-  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/opencv$OPENCV_VERSION; fi
+  if [ $OS_VERSION == "aarch" ]; then rm -rf $PROGRAM_PATH/opencv$OPENCV_VERSION; fi
 fi
 
 # Install DLIB
 if [ $DLIB -eq 1 ]; then
   ./install/install_dlib.sh
-  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/dlib; fi
+  if [ $OS_VERSION == "aarch" ]; then rm -rf $PROGRAM_PATH/dlib; fi
 fi
 
 # Install Torch
@@ -125,7 +125,7 @@ if [ $OPENFACE -eq 1 ]; then ./install/install_openface.sh; fi
 # Install PyTorch
 if [ $PYTORCH -eq 1 ]; then
   ./install/install_pytorch.sh 
-  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/pytorch; fi
+  if [ $OS_VERSION == "aarch" ]; then rm -rf $PROGRAM_PATH/pytorch; fi
 fi
 
 # Install YOLO
@@ -134,7 +134,7 @@ if [ $YOLO -eq 1 ]; then ./install/install_yolo.sh; fi
 # Install TensorFlow
 if [ $TF -eq 1 ]; then
   ./install/install_tensorflow.sh
-  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/tensorflow; fi
+  if [ $OS_VERSION == "aarch" ]; then rm -rf $PROGRAM_PATH/tensorflow; fi
 fi
 
 # Install Astra
@@ -152,7 +152,7 @@ if [ $ARDUINO -eq 1 ]; then ./install/install_arduino.sh; fi
 # Install Despot
 if [ $DESPOT -eq 1 ]; then
   ./install/install_despot.sh
-  if [ $OS_VERSION == "aarch" ]; then rm $PROGRAM_PATH/despot; fi
+  if [ $OS_VERSION == "aarch" ]; then rm -rf $PROGRAM_PATH/despot; fi
 fi
 
 roscd
@@ -168,9 +168,9 @@ if [ $RPLIDAR -eq 1 ]; then ./install/install_rplidar.sh; fi
 if [ $OS_VERSION == "aarch" ] && [ $SWAP -eq 1 ]; then
   sudo swapoff --all
   sudo mv /etc/fstab /etc/fstab.back
-  sudo cp `dirname "$0"`/tensorflow/fstab /etc/ 
+  sudo cp `dirname "$0"`install/tensorflow/fstab /etc/ 
   #sudo gedit /etc/fstab # Delete contents of entire file
-  rm -rf /media/nvidia/$EXT_NAME/swapfile
+  sudo rm -rf /media/nvidia/$EXT_NAME/swapfile
   
   #sudo apt clean
   #sudo apt autoremove --purge

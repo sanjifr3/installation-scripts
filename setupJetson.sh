@@ -24,7 +24,7 @@ TORCH=0
 OPENFACE=0
 YOLO=0
 PYTORCH=0
-TF=1
+TF=0
 ASTRA=0
 REALSENSE=1
 AWS=0
@@ -33,14 +33,13 @@ DESPOT=0
 RESPEAKER=0
 RPLIDAR=0
 
-CREATE_SWAP=0
+CREATE_SWAP=1
 
 export OS_VERSION=aarch
 export ROS_VERSION=kinetic
 export USE_GPU=1
 export INSTALL_PY2=1
 export INSTALL_PY3=0
-
 
 ######################################################################################
 

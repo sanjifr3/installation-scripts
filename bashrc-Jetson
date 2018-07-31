@@ -48,3 +48,7 @@ export ROSLAUNCH_SSH_UNKNOWN=1
 export EDITOR=gedit
 
 export ROBOT=jetson
+
+export IS_JETSON=true
+
+export XDG_RUNTIME_DIR=/run/user/$UID

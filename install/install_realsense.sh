@@ -77,18 +77,21 @@ sudo chmod +x scripts/*.sh
 if [ $OS_V == "16.04" ]; then
   ./scripts/patch-realsense-ubuntu-xenial-joule.sh
 elif [ $OS_V == "aarch" ]; then
-  ./scripts/patch-utils.sh.sh
+  ./scripts/patch-utils.sh
 fi
 
 echo "hid_sensor_custom" | sudo tee -a /etc/modules
   
 gedit CMakeLists.txt
-# Add the following at row 22 of CMakeList.txt
-#find_package (OpenCV 3.4.0 EXACT REQUIRED
-#  NO_MODULE
-#  PATHS /usr/local
-#  NO_DEFAULT_PATH
-#)
+
+echo "Add the following to CMakeList row 31:"
+echo "find_package (OpenCV 3.4.0 EXACT REQUIRED"
+echo "  NO_MODULE"
+echo "  PATHS /usr/local"
+echo "  NO_DEFAULT_PATH"
+echo ")"
+
+read -p "Press enter to continue"
   
 mkdir -p build
 cd build
@@ -106,7 +109,7 @@ if [ $OS_V == "16.04" ]; then
     -DBUILD_PYTHON_BINDINGS=bool:true \
     -DPYTHON_EXECUTABLE=/usr/bin/python2.7 \
     -DPYTHON_LIBS=/usr/lib/x86_64-linux-gnu/libpython2.7.so
-elif [ $OS_V == "aaarch" ]; then
+elif [ $OS_V == "aarch" ]; then
   cmake ../ -DBUILD_EXAMPLES=true
 fi
 
