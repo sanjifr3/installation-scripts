@@ -48,7 +48,7 @@ for PKG in \
 
 ## Install ROS main
 if [ $VERSION != "aarch" ]; then 
-  sudo apt-get install -y --upgrade ros-$VERSION-move-base ros-$VERSION-dwa-local-planner ros-$VERSION-map-server ros-$VERSION-driver-base ros-$VERSION-pointcloud-to-laserscan
+  sudo apt-get install -y --upgrade ros-$VERSION-gmapping ros-$VERSION-move-base ros-$VERSION-dwa-local-planner ros-$VERSION-map-server ros-$VERSION-driver-base ros-$VERSION-pointcloud-to-laserscan
 fi
 
 ## Add lines to bashrc
