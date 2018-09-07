@@ -21,3 +21,4 @@ if [ -d "~/Arduino/libraries" ]; then
   cd ~/Arduino/libraries
   rm -rf ros_lib
   rosrun rosserial_arduino make_libraries.py .
+fi
