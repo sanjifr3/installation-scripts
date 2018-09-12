@@ -32,6 +32,7 @@ fi
 for PKG in \
   laser-scan-matcher \
   depthimage-to-laserscan \
+  pointcloud-to-laserscan \
   rtabmap \
   rtabmap-ros \
   tf2-bullet \
@@ -47,8 +48,18 @@ for PKG in \
 ; do sudo apt-get install -y --upgrade ros-$VERSION-$PKG ; done
 
 ## Install ROS main
-if [ $VERSION != "aarch" ]; then 
-  sudo apt-get install -y --upgrade ros-$VERSION-gmapping ros-$VERSION-move-base ros-$VERSION-dwa-local-planner ros-$VERSION-map-server ros-$VERSION-driver-base ros-$VERSION-pointcloud-to-laserscan
+if [ $VERSION != "aarch" ]; then
+  for PKG in \
+    gmapping \
+    move-base \
+    eband-local-planner \
+    dwa-local-planner \
+    map-server \
+    driver-base \
+    bfl \
+  ; do sudo apt-get install -y --upgrade ros-$VERSION-$PKG
+else
+  sudo apt-get install -y ros-kinetic-robot-upstart daemontools-run runit
 fi
 
 ## Add lines to bashrc
