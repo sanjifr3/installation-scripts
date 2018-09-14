@@ -131,11 +131,21 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Function to kill all jobs
+function killjobs () {
+  JOBS="$(jobs -p)";
+  echo 'Killing all active jobs...'  
+  if [ -n "${JOBS}" ]; then
+    kill -KILL ${JOBS}
+  fi
+  kill %%
+  kill %%
+  echo 'All jobs terminated'  
+}
+
 # Aliases
 alias bashrc="gedit ~/.bashrc"
 alias pycharm="pycharm.sh"
-alias blu="cd ~/blueberry"
-alias makeblu="cd ~/blueberry && catkin_make"
 alias srcbash="source ~/.bashrc"
 alias open="nautilus ."
 alias ..="cd .."
