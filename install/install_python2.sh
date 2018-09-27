@@ -6,6 +6,9 @@ sudo pip2 install --upgrade pip
 
 sudo pip2 install python-dateutil==2.7.0
 
+# Install pygame dependencies
+sudo apt-get build-dep python-pygame
+
 PACKAGES=''
 if [ $OS_V != "aarch" ]; then
   PACKAGES=(
@@ -14,14 +17,14 @@ if [ $OS_V != "aarch" ]; then
     imutils pygame numexpr twitter nltk boto3 
     networkx watson-developer-cloud plotly 
     cufflinks wolframalpha flask imblearn xgboost 
-    jupyter ipython spyder Cython h5py hyperas
+    jupyter ipython spyder Cython h5py hyperas pygame
   )
 else
   PACKAGES=(
     numpy pandas testresources matplotlib seaborn
     scipy scikit-learn sklearn scikit-image lxml
     imutils boto3 watson-developer-cloud plotly 
-    cufflinks imblearn xgboost h5py hyperas Cython
+    cufflinks imblearn xgboost h5py hyperas Cython pygame
   )
 fi
 
