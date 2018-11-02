@@ -15,17 +15,22 @@ if [ $OS_V != "aarch" ]; then
   sudo apt-get install -y cuda
 
   ## Apply patch 1
-  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update_1.0-1_amd64.deb
+  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update_1.0-1_amd64-deb
   sudo apt-get update  
   sudo apt-get upgrade -y cuda  
 
   ## Apply patch 2
-  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update-2_1.0-1_amd64.deb
+  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update-2_1.0-1_amd64-deb
   sudo apt-get update  
   sudo apt-get upgrade -y cuda
   
-  ## Apply path 3
-  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update-3_1.0-1_amd64.deb
+  ## Apply patch 3
+  sudo dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update-3_1.0-1_amd64-deb
+  sudo apt-get update
+  sudo apt-get upgrade -y cuda
+  
+  ## Apply patch 4
+  sudo dpkg -i cuda-repo-ubuntu1604-9-0-176-local-patch-4_1.0-1_amd64-deb
   sudo apt-get update
   sudo apt-get upgrade -y cuda
 fi
