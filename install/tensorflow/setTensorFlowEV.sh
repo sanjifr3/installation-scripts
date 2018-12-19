@@ -13,7 +13,7 @@ IFS='.' read -ra CUDNN_SPLIT <<< "$CUDNN"
 default_python_bin_path=$(which python)
 default_cudnn_path=/usr/local/cuda
 
-export TF_CUDA_COMPUTE_CAPABILITIES='3.5,5.2'
+export TF_CUDA_COMPUTE_CAPABILITIES='3.5,5.0,5.2,6.1'
 
 if [ $PY == 3.5 ]; then default_python_bin_path=$(which python3); fi
 if [ $OS_V == "aarch" ]; then 

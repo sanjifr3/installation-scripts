@@ -1,6 +1,6 @@
 #!/bin/bash
 DIR=${PROGRAM_PATH:-$HOME/programs}
-TF=${TF_VERSION:-1.6.0-rc0}
+TF=${TF_VERSION:-1.12.0-rc2}
 CUDA=${CUDA_VERSION:-9.0}
 OS_V=${OS_VERSION:-16.04}
 PY2=${INSTALL_PY2:-1}

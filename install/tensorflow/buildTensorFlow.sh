@@ -11,7 +11,7 @@ CUDNN=${CUDNN_VERSION:-7.0.5}
 IFS='.' read -ra CUDNN_SPLIT <<< "$CUDNN"
 
 if [ $OS_V == "aarch" ]; then export TF_CUDA_COMPUTE_CAPABILITIES=6.2;
-else export TF_CUDA_COMPUTE_CAPABILITIES='3.5,5.2'; fi
+else export TF_CUDA_COMPUTE_CAPABILITIES='3.5,5.0,5.2,6.1'; fi
 
 export TF_NEED_CUDA=1
 export TF_CUDA_VERSION=$CUDA
