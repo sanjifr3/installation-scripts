@@ -7,6 +7,7 @@ OS_V=${OS_VERSION:-16.04}
 CUDA=${CUDA_VERSION:-9.0}
 CUDNN=${CUDNN_VERSION:-7.1.5}
 PY=${USE_PY:-2.7}
+TF_PATH=${MY_TF_PATH:-tensorflow}
 
 IFS='.' read -ra CUDNN_SPLIT <<< "$CUDNN"
 
@@ -23,7 +24,7 @@ if [ $OS_V == "aarch" ]; then
   export TF_CUDA_COMPUTE_CAPABILITIES=6.2
 fi
 
-cd $DIR/tensorflow
+cd $DIR/$TF_PATH
 # TensorFlow couldn't find include file for some reason
 # TensorFlow expects it in /usr/lib/aarch64-linux-gnu/include/cudnn.h
 #sudo mkdir -p /usr/lib/aarch64-linux-gnu/include/
@@ -70,7 +71,7 @@ export TF_NEED_COMPUTECPP=0
 export TF_NEED_TENSORRT=0
 export TF_SET_ANDROID_WORKSPACE=0
 
-source $DIR/tensorflow/configure
+source $DIR/$TF_PATH/configure
 
 # If the above fails, try adding `#!/usr/bin/python` to top of configure.py
 # try changing `configure` to `configure.py` above

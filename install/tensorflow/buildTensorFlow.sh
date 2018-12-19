@@ -7,6 +7,7 @@ DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
 CUDA=${CUDA_VERSION:-9.0}
 CUDNN=${CUDNN_VERSION:-7.1.5}
+TF_PATH=${MY_TF_PATH:-tensorflow}
 
 IFS='.' read -ra CUDNN_SPLIT <<< "$CUDNN"
 
@@ -19,7 +20,7 @@ export CUDA_TOOLKIT_PATH=/usr/local/cuda
 export TF_CUDNN_VERSION=${CUDNN_SPLIT[0]}
 export CUDNN_INSTALL_PATH=/usr/local/cuda
 
-cd $DIR/tensorflow
+cd $DIR/${TF_PATH}
 
 # Build Tensorflow
 
