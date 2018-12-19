@@ -1,10 +1,12 @@
 #!/bin/bash
 DIR=${PROGRAM_PATH:-$HOME/programs}
-TF=${TF_VERSION:-1.12.0-rc2}
+TF=${TF_VERSION:-1.11.0-rc2}
 CUDA=${CUDA_VERSION:-9.0}
 OS_V=${OS_VERSION:-16.04}
 PY2=${INSTALL_PY2:-1}
 PY3=${INSTALL_PY3:-1}
+TF_PATH=${MY_TF_PATH:-tensorflow}
+
 
 # Remap names (strip dots)
 CUDA_=${CUDA%.*}${CUDA##*.}

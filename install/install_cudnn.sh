@@ -1,5 +1,5 @@
 #!/bin/bash
-CUDNN=${CUDNN_VERSION:-7.0.5}
+CUDNN=${CUDNN_VERSION:-7.1.4}
 CUDA=${CUDA_VERSION:-9.0}
 DIR=${PROGRAM_PATH:-$HOME/programs}
 OS_V=${OS_VERSION:-16.04}
@@ -32,11 +32,16 @@ if [ $OS_V == "aarch" ]; then
   fi
 else
   cd $DIR/cuda
-  tar xvzf cudnn-${CUDA}-linux-x64-v${CUDNN_SPLIT[0]}.tgz
+  if [ $CUDNN == "7.0.5" ]; then
+    tar xvzf cudnn-${CUDA}-linux-x64-v${CUDNN_SPLIT[0]}.tgz
+  elif [ $CUDNN == "7.1.4" ]; then
+    tar xvzf cudnn-${CUDA}-linux-x64-v${CUDNN_SPLIT[0]}.${CUDNN_SPLIT[1]}.tgz
+  fi
+  
   sudo cp cuda/include/cudnn.h /usr/local/cuda/include
   sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
   sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-  sudo apt-get install nvidia-384-dev 
+  #sudo apt-get install nvidia-384-dev 
 fi
 
 #cp /etc/ld.so.conf.d/cuda-9-0.conf $DIR/cuda
