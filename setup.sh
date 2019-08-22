@@ -155,8 +155,11 @@ if [ $DESPOT -eq 1 ]; then
   if [ $OS_VERSION == "aarch" ]; then rm -rf $PROGRAM_PATH/despot; fi
 fi
 
-roscd
-catkin_make
+# Make ROS workspace if it exists and is installed
+if [ $ROS -eq 1 ]; then
+  roscd
+  catkin_make
+fi
 
 # Install Respeaker
 if [ $RESPEAKER -eq 1 ]; then ./install/install_respeaker.sh; fi
